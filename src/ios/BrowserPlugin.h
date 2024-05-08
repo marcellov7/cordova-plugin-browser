@@ -5,6 +5,7 @@
 
 - (void)ready:(CDVInvokedUrlCommand*)command;
 - (void)open:(CDVInvokedUrlCommand*)command;
+- (void)close:(CDVInvokedUrlCommand*)command;
 - (void)onLoad:(CDVInvokedUrlCommand*)command;
 - (void)onClose:(CDVInvokedUrlCommand*)command;
 
