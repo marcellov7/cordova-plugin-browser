@@ -30,6 +30,21 @@ function(url, options) {
     });
 };
 
+exports.close =
+/**
+ * Closes the browser activity if it is open.
+ *
+ * @returns {Promise<void>} Callback when operation is completed
+ *
+ * @example
+ * cordova.plugins.browser.close();
+ */
+function() {
+    return new Promise(function(resolve, reject) {
+        exec(resolve, reject, PLUGIN_NAME, "close", []);
+    });
+};
+
 exports.onLoad =
 /**
  * Trigger a callback when browser finished loading page successfully.
