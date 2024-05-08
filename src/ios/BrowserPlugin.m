@@ -62,6 +62,22 @@
     }
 }
 
+- (void)close:(CDVInvokedUrlCommand *)command {
+    if (self.safariNavigationController) {
+        [self.safariNavigationController dismissViewControllerAnimated:YES completion:^{
+            self.safariViewController = nil;
+            self.safariNavigationController = nil;
+
+            CDVPluginResult *result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
+            [self.commandDelegate sendPluginResult:result callbackId:command.callbackId];
+        }];
+    } else {
+        CDVPluginResult *result = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR
+        messageAsString:@"SafariViewController is not open"];
+        [self.commandDelegate sendPluginResult:result callbackId:command.callbackId];
+    }
+}
+
 - (void)onLoad:(CDVInvokedUrlCommand *)command {
     self.loadCallbackId = command.callbackId;
 }
