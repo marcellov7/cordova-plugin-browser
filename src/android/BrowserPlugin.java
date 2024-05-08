@@ -90,6 +90,16 @@ public class BrowserPlugin extends ReflectiveCordovaPlugin {
         callbackContext.success();
     }
 
+    protected void close(CallbackContext callbackContext) {
+        if (customTabsClient != null) {
+            customTabsClient.warmup(0);
+            customTabsClient.newSession(null).mayLaunchUrl(Uri.EMPTY, null, null);
+            callbackContext.success();
+        } else {
+            callbackContext.error("CustomTabsClient is not initialized");
+        }
+    }
+
     @CordovaMethod
     protected void onLoad(CallbackContext callbackContext) {
         loadCallback = callbackContext;
